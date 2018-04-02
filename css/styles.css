@@ -140,7 +140,7 @@ nav h1 a {
   border: 2px solid #ccc;
   font-family: Arial, sans-serif;
   padding: 1em 1em 1em 1em;
-  margin: 0;
+  margin-bottom: 1%;
   list-style: none;
   text-align: center;
   width: 275px;
@@ -246,7 +246,13 @@ nav h1 a {
   color: #666;
 }
 
-@media screen and (min-width: 550px){
+@media screen and (min-width: 350px) and (max-width: 649px){
+  #restaurants-list li {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 650px){
   #restaurants-list li{
     display: inline-block;
     margin: 2vh 2vh 2vh 0;

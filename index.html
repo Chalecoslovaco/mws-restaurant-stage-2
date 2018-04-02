@@ -42,7 +42,15 @@
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoUvaPbhcUz0jXA2-4QvNV20VM3q0J6Gg	&libraries=places&callback=initMap"></script>
-
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function(){
+        navigator.serviceWorker
+                      .register('sw.js')
+                      .then(function(){ console.log('SW registered');});
+      });
+    }
+  </script>
 </body>
 
 </html>
