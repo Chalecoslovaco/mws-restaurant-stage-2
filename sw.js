@@ -26,7 +26,24 @@ self.addEventListener('fetch', function(event){
                 })
             })
         }).catch(function(error){
-            return new Response('Error during request, it seems you are not connected to a network.');
+            return new Response('Error during request, it seems you are not connected to a network and you have not visited this page yet.');
         })
     );
 });
+
+self.addEventListener('activate', function(event) {
+    var cacheWhitelist = [staticCacheName];
+
+    event.waitUntil(
+      caches.keys().then(function(cacheNames) {
+        return Promise.all(
+          cacheNames.map(function(cacheName) {
+            if (cacheWhitelist.indexOf(cacheName) === -1) {
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      })
+    );
+});
+
