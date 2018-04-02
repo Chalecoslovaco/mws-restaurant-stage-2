@@ -138,7 +138,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
   const small = 'small', medium = 'medium', big = 'big';
-  var size = small;
+  let size = small;
   //const wsmall = '350w', wmedium = '550w', big = '800w';
 
   if(window.matchMedia('screen and (min-width: 1000px)'))

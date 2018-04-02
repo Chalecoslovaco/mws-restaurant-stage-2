@@ -1,3 +1,4 @@
+//code implemented following Lab: Caching Files with Service Worker from developers.google.com
 var filesToCache = [
     '/css/styles.css',
     '/index.html'

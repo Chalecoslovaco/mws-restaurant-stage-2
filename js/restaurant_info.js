@@ -58,7 +58,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   address.tabIndex = 0;
 
   const small = 'small', medium = 'medium', big = 'big';
-  var size = small;
+  let size = small;
   const image = document.getElementById('restaurant-img');
 
   if(window.matchMedia('screen and (min-width: 1000px)'))
