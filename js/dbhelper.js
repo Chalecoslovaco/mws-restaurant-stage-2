@@ -161,8 +161,7 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant, size) {
-    var separator = restaurant.photograph.indexOf(".");
-    return (`/img/${restaurant.photograph.substring(0,separator)}-${size}${restaurant.photograph.substring(separator,restaurant.photograph.lenth)}`);
+    return (`/img/${restaurant.photograph}-${size}.jpg`);
   }
 
   /**
