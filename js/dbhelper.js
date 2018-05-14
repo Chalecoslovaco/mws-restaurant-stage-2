@@ -1,6 +1,8 @@
 /**
  * Common database helper functions.
  */
+
+
 class DBHelper {
 
   /**
@@ -15,6 +17,31 @@ class DBHelper {
   static get DATABASE_URL() {
     const port = 1337 // Change this to your server port
     return `http://localhost:${port}/restaurants`;
+  }
+
+  static openDatabase() {
+    if(!navigator.serviceWorker){
+      return Promise.resolve();
+    }
+
+    return idb.open('restaurants', 1, function (upgradeDb) {
+      var store = upgradeDb.createObjectStore('restaurants', {
+        keyPath: 'id'
+      });
+    });
+  }
+
+  static populateDatabase(restaurants){
+    return DBHelper.openDatabase().then(function(db){
+      if(!db) return;
+
+      var tx = db.transaction('restaurants', 'readwrite');
+      var store = tx.objectStore('restaurants');
+      restaurants.forEach(function (restaurant) {
+          store.put(restaurant);
+      })
+      return tx.complete;
+    });
   }
 
   /**
@@ -37,9 +64,12 @@ class DBHelper {
     return fetch(DBHelper.DATABASE_URL)
       .then(function(response){
         return response.json();
-      }).then(restaurants => {
+    }).then(restaurants => {
+          DBHelper.populateDatabase(restaurants);
+        return restaurants;
+    }).then(restaurants => {
         callback(null, restaurants)
-      });
+    });
   }
 
   /**
