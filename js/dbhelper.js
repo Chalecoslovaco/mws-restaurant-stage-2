@@ -44,6 +44,16 @@ class DBHelper {
     });
   }
 
+  static getIdbRestaurants(){
+    return DBHelper.openDatabase().then(function(db){
+      if(!db) return;
+
+      var tx = db.transaction('restaurants');
+      var store = tx.objectStore('restaurants');
+      return store.getAll();
+    });
+  }
+
   /**
    * Fetch all restaurants.
    */
@@ -61,14 +71,20 @@ class DBHelper {
       }
     };
     xhr.send();*/
-    return fetch(DBHelper.DATABASE_URL)
-      .then(function(response){
-        return response.json();
-    }).then(restaurants => {
-          DBHelper.populateDatabase(restaurants);
+    return DBHelper.getIdbRestaurants().then((restaurants) => {
+      if (restaurants.length) {
         return restaurants;
+      } else {
+        return fetch(DBHelper.DATABASE_URL)
+          .then(function(response){
+            return response.json();
+        }).then(restaurants => {
+            DBHelper.populateDatabase(restaurants);
+            return restaurants;
+        });
+      }
     }).then(restaurants => {
-        callback(null, restaurants)
+      callback(null, restaurants)
     });
   }
 
