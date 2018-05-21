@@ -9,7 +9,7 @@
   <!-- Normalize.css for better cross-browser consistency -->
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <!-- Main CSS file -->
-  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <link rel="stylesheet" href="css/styles.css" type="text/css" media="none" onload="if(media!='all')media='all'">
   <title>Restaurant Info</title>
 </head>
 
@@ -65,10 +65,18 @@
   <!-- Database helpers -->
   <script type="text/javascript" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="/js/idb.js"></script>
+  <script type="application/javascript" charset="utf-8" src="/js/echo.min.js"></script>
   <!-- Main javascript file -->
   <script type="text/javascript" src="js/restaurant_info.js"></script>
   <!-- Google Maps -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoUvaPbhcUz0jXA2-4QvNV20VM3q0J6Gg	&libraries=places&callback=initMap"></script>
+  <script>
+    echo.init({
+      offset: 1000,
+      throttle: 250,
+      unload: false
+    });
+  </script>
   <!-- End scripts -->
 
 </body>

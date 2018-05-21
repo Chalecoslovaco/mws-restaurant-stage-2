@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#0275d8"/>
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css" media="none" onload="if(media!='all')media='all'">
   <title>Restaurant Reviews</title>
 </head>
 
@@ -46,6 +46,7 @@
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
   <script type="application/javascript" charset="utf-8" src="/js/idb.js"></script>
+  <script type="application/javascript" charset="utf-8" src="/js/echo.min.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoUvaPbhcUz0jXA2-4QvNV20VM3q0J6Gg	&libraries=places&callback=initMap"></script>
   <script>
     if ('serviceWorker' in navigator) {
@@ -55,6 +56,13 @@
                       .then(function(){ console.log('SW registered');});
       });
     }
+  </script>
+  <script>
+    echo.init({
+      offset: 1000,
+      throttle: 250,
+      unload: false
+    });
   </script>
 </body>
 
