@@ -66,7 +66,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   else if (window.matchMedia('screen and (min-width: 600px)'))
     size = small;
     
-  image.className = 'restaurant-img lazy'
+  image.className = 'restaurant-img lazyload'
   //image.src = '';
   image.setAttribute('data-src', DBHelper.imageUrlForRestaurant(restaurant, size));
   image.alt = restaurant.name + ' resturant picture';
