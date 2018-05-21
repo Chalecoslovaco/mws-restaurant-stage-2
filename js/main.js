@@ -142,16 +142,19 @@ createRestaurantHTML = (restaurant) => {
   //const wsmall = '350w', wmedium = '550w', big = '800w';
 
   if(window.matchMedia('screen and (min-width: 1000px)'))
-    size = big;
-  else if (window.matchMedia('screen and (min-width: 600px)'))
     size = medium;
+  else if (window.matchMedia('screen and (min-width: 600px)'))
+    size = small;
 
   //const picture = document.createElement('picture');
   const image = document.createElement('img');
-  image.className = 'restaurant-img';
-  image.src = '';
-  image.setAttribute('data-echo', DBHelper.imageUrlForRestaurant(restaurant, size));
+  image.className = 'restaurant-img lazy';
+  //image.src = '';
+  image.setAttribute('data-src', DBHelper.imageUrlForRestaurant(restaurant, size));
   image.alt = restaurant.name + ' resturant picture';
+  if(restaurant.id == 10){
+    image.setAttribute('onload', 'lazyLoad()');
+  }
   /*image.srcset = `${DBHelper.imageUrlForRestaurant(restaurant, small)} ${wsmall},
                     ${DBHelper.imageUrlForRestaurant(restaurant, medium)} ${wmedium},
                         ${DBHelper.imageUrlForRestaurant(restaurant, big)} ${wbig}`;*/

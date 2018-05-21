@@ -62,13 +62,13 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.getElementById('restaurant-img');
 
   if(window.matchMedia('screen and (min-width: 1000px)'))
-    size = big;
-  else if (window.matchMedia('screen and (min-width: 600px)'))
     size = medium;
+  else if (window.matchMedia('screen and (min-width: 600px)'))
+    size = small;
     
-  image.className = 'restaurant-img'
-  image.src = '';
-  image.setAttribute('data-echo', DBHelper.imageUrlForRestaurant(restaurant, size));
+  image.className = 'restaurant-img lazy'
+  //image.src = '';
+  image.setAttribute('data-src', DBHelper.imageUrlForRestaurant(restaurant, size));
   image.alt = restaurant.name + ' resturant picture';
 
   const cuisine = document.getElementById('restaurant-cuisine');

@@ -43,11 +43,8 @@
     Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
 
-  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
-  <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
-  <script type="application/javascript" charset="utf-8" src="/js/idb.js"></script>
-  <script type="application/javascript" charset="utf-8" src="/js/intersection-observer.js"></script>
-  <!--<script type="application/javascript" charset="utf-8" src="/js/echo.min.js"></script>-->
+  <script type="application/javascript" charset="utf-8" src="dist/js/bundle.js"></script>
+  <script type="application/javascript" charset="utf-8" src="/js/echo.min.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoUvaPbhcUz0jXA2-4QvNV20VM3q0J6Gg&libraries=places&callback=initMap"></script>
   <script>
     if ('serviceWorker' in navigator) {
@@ -59,37 +56,12 @@
     }
   </script>
   <script>
-    function lazyLoad(){
-      var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
-
-      if ("IntersectionObserver" in window) {
-        let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              let lazyImage = entry.target;
-              lazyImage.src = lazyImage.dataset.src;
-              lazyImage.srcset = lazyImage.dataset.srcset;
-              lazyImage.classList.remove("lazy");
-              lazyImageObserver.unobserve(lazyImage);
-            }
-          });
-        });
-
-        lazyImages.forEach(function(lazyImage) {
-          lazyImageObserver.observe(lazyImage);
-        });
-      } else {
-        console.log('Error lazyloading imgs');
-      }
-    }
-  </script>
-  <!--<script>
     echo.init({
       offset: 1000,
       throttle: 250,
       unload: false
     });
-  </script>-->
+  </script>
 </body>
 
 </html>
