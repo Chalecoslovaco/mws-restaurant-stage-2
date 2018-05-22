@@ -57,12 +57,12 @@ gulp.task('build-js', function() {
 gulp.task('compress', function() {
   return gulp.src(input.javascript)
     .pipe(sourcemaps.init())
-    /*.pipe(concat('bundle-min.js'))
+    //.pipe(concat('bundle-min.js'))
     .pipe(babel({
       presets: ['es2015']
     }).on('error', function(e){
       console.log(e);
-    }))*/
+    }))
     .pipe(uglify().on('error', function(e){
       console.log(e);
     }))
