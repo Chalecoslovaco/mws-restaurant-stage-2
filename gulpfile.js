@@ -18,7 +18,6 @@ let gulp   = require('gulp'),
     };
 
 
-// define the default task and add the watch task to it
 gulp.task('default', ['watch']);
 
 gulp.task('copy-index', function() {
@@ -33,14 +32,12 @@ gulp.task('copy-imgs', function() {
     .pipe(gulp.dest('dist/img'));
 });
 
-//LINT JS TASK
 gulp.task('jshint', function() {
   return gulp.src(input.javascript)
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
-//SASS TASK
 gulp.task('build-css', function() {
   return gulp.src(input.sass)
     .pipe(sass({
@@ -57,16 +54,15 @@ gulp.task('build-js', function() {
     .pipe(gulp.dest(output.javascript));
 });
 
-//CONCAT JS + UGLIFY JS FOR PROD ENVIRONMENT
-gulp.task('build-js-prod', function() {
+gulp.task('compress', function() {
   return gulp.src(input.javascript)
     .pipe(sourcemaps.init())
-    .pipe(concat('bundle-min.js'))
+    /*.pipe(concat('bundle-min.js'))
     .pipe(babel({
       presets: ['es2015']
     }).on('error', function(e){
       console.log(e);
-    }))
+    }))*/
     .pipe(uglify().on('error', function(e){
       console.log(e);
     }))
@@ -74,9 +70,8 @@ gulp.task('build-js-prod', function() {
     .pipe(gulp.dest(output.javascript));
 });
 
-//WATCH TASKS
 gulp.task('watch', function() {
-  gulp.watch(input.javascript, ['jshint', 'build-js', 'build-js-prod']);
+  gulp.watch(input.javascript, ['jshint', 'build-js', 'compress']);
   gulp.watch(input.sass, ['build-css']);
   gulp.watch('/index.html', ['copy-html']);
 });
