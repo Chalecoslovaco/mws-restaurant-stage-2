@@ -8,6 +8,7 @@ let gulp   = require('gulp'),
     babel = require('gulp-babel'),
     imagemin = require('gulp-imagemin'),
     webp = require('gulp-webp'),
+    htmlmin = require('gulp-htmlmin'),
     input  = {
       'sass': 'scss/*.scss',
       'javascript': 'js/*.js'
@@ -19,11 +20,6 @@ let gulp   = require('gulp'),
 
 
 gulp.task('default', ['watch']);
-
-gulp.task('copy-index', function() {
-  gulp.src('./index.html')
-    .pipe(gulp.dest('./dist'));
-});
 
 gulp.task('copy-imgs', function() {
   gulp.src('img/*')
@@ -54,7 +50,7 @@ gulp.task('build-js', function() {
     .pipe(gulp.dest(output.javascript));
 });
 
-gulp.task('compress', function() {
+gulp.task('uglify-js', function() {
   return gulp.src(input.javascript)
     .pipe(sourcemaps.init())
     //.pipe(concat('bundle-min.js'))
@@ -70,8 +66,14 @@ gulp.task('compress', function() {
     .pipe(gulp.dest(output.javascript));
 });
 
+gulp.task('minify-html', function() {
+  return gulp.src('*.html')
+    .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task('watch', function() {
-  gulp.watch(input.javascript, ['jshint', 'build-js', 'compress']);
+  gulp.watch(input.javascript, ['jshint', 'build-js', 'uglify-js']);
   gulp.watch(input.sass, ['build-css']);
-  gulp.watch('/index.html', ['copy-html']);
+  gulp.watch('/*.html', ['minify-html']);
 });

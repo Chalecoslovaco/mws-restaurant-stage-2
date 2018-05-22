@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#0275d8"/>
     <link rel="manifest" href="/manifest.json">
   <!-- Normalize.css for better cross-browser consistency -->
-  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" media="none" onload="if(media!='all')media='all'"/>
   <!-- Main CSS file -->
   <link rel="stylesheet" href="dist/css/index.css" type="text/css" media="none" onload="if(media!='all')media='all'">
   <link rel="stylesheet" href="dist/css/details.css" type="text/css" media="none" onload="if(media!='all')media='all'">
@@ -64,12 +64,12 @@
 
   <!-- Beginning scripts -->
   <!-- Database helpers -->
-  <script type="text/javascript" src="js/dbhelper.js"></script>
-  <script type="application/javascript" charset="utf-8" src="/js/idb.js"></script>
+  <script type="text/javascript" src="js/dbhelper.js" async></script>
+  <script type="application/javascript" charset="utf-8" src="/js/idb.js" async></script>
   <!-- Main javascript file -->
-  <script type="text/javascript" src="js/restaurant_info.js"></script>
+  <script type="text/javascript" src="js/restaurant_info.js" async></script>
   <script src="js/lazysizes.min.js" async=""></script>
-  <script type="application/javascript" charset="utf-8" src="/js/intersection-observer.js"></script>
+  <!--<script type="application/javascript" charset="utf-8" src="/js/intersection-observer.js"></script>-->
   <!-- Google Maps -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoUvaPbhcUz0jXA2-4QvNV20VM3q0J6Gg&libraries=places&callback=initMap"></script>
   <!-- End scripts -->
